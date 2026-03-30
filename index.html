@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sneha Naik — Python Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0e0e0e;
+    --off-white: #f5f2ed;
+    --cream: #ede9e2;
+    --warm-mid: #c9c0b0;
+    --muted: #8a8075;
+    --accent: #2d5a3d;
+    --accent-light: #4a8c60;
+    --accent-pale: #e8f0eb;
+    --rust: #a84c2a;
+    --rust-pale: #f5e8e2;
+    --sky: #2a4f6e;
+    --sky-pale: #e2ecf5;
+    --gold: #7a5c1e;
+    --gold-pale: #f5f0e0;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --mono: 'DM Mono', 'Fira Code', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--off-white);
+    color: var(--black);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 3rem;
+    background: rgba(245, 242, 237, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .nav-logo {
+    font-family: var(--serif); font-size: 1.1rem; letter-spacing: -0.01em; color: var(--black); text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.85rem; font-weight: 400; color: var(--muted); text-decoration: none;
+    letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--black); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 5rem;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 5rem 4rem 5rem 6rem;
+    border-right: 1px solid rgba(0,0,0,0.08);
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; margin-bottom: 2rem;
+  }
+  .hero-tag::before {
+    content: ''; width: 24px; height: 1px; background: var(--accent);
+  }
+  .hero-name {
+    font-family: var(--serif); font-size: clamp(3rem, 5vw, 5rem);
+    line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 1.5rem;
+    color: var(--black);
+  }
+  .hero-name em { font-style: italic; color: var(--accent); }
+  .hero-desc {
+    font-size: 1rem; color: var(--muted); max-width: 44ch; line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.75rem 1.75rem; background: var(--black); color: var(--off-white);
+    text-decoration: none; font-size: 0.85rem; font-weight: 500;
+    letter-spacing: 0.02em; border-radius: 2px; transition: all 0.2s;
+  }
+  .btn-primary:hover { background: var(--accent); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.75rem 1.75rem; background: transparent; color: var(--black);
+    text-decoration: none; font-size: 0.85rem; font-weight: 500;
+    letter-spacing: 0.02em; border-radius: 2px; border: 1px solid rgba(0,0,0,0.2);
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--black); background: rgba(0,0,0,0.04); }
+
+  .hero-right {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 5rem 4rem;
+    background: var(--cream);
+  }
+  .hero-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+  .stat-item {
+    padding: 2rem;
+    border-right: 1px solid rgba(0,0,0,0.08);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  .stat-item:nth-child(even) { border-right: none; }
+  .stat-item:nth-child(3), .stat-item:nth-child(4) { border-bottom: none; }
+  .stat-num {
+    font-family: var(--serif); font-size: 2.4rem; line-height: 1;
+    margin-bottom: 0.3rem; color: var(--black);
+  }
+  .stat-label { font-size: 0.8rem; color: var(--muted); letter-spacing: 0.04em; }
+
+  .hero-scroll {
+    margin-top: 3rem;
+    font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); display: flex; align-items: center; gap: 1rem;
+  }
+  .hero-scroll::after {
+    content: ''; flex: 1; height: 1px; background: var(--warm-mid);
+  }
+
+  /* SECTIONS COMMON */
+  section { padding: 7rem 6rem; }
+  .section-label {
+    font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); font-weight: 500; margin-bottom: 3rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: rgba(0,0,0,0.1); }
+  .section-title {
+    font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 3rem);
+    line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 1rem;
+  }
+
+  /* ABOUT */
+  #about { background: var(--black); color: var(--off-white); }
+  #about .section-label { color: rgba(255,255,255,0.35); }
+  #about .section-label::after { background: rgba(255,255,255,0.1); }
+  #about .section-title { color: var(--off-white); }
+  .about-grid {
+    display: grid; grid-template-columns: 1.4fr 1fr; gap: 6rem; margin-top: 4rem;
+  }
+  .about-text p {
+    font-size: 1rem; line-height: 1.9; color: rgba(255,255,255,0.7);
+    margin-bottom: 1.5rem;
+  }
+  .about-text p strong { color: var(--off-white); font-weight: 500; }
+  .about-links { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+  .about-link {
+    display: flex; align-items: center; gap: 1rem; color: var(--off-white);
+    text-decoration: none; font-size: 0.9rem; padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08); transition: color 0.2s;
+  }
+  .about-link:hover { color: var(--accent-light); }
+  .about-link-icon { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.06); border-radius: 4px; flex-shrink: 0; }
+  .skills-column { display: flex; flex-direction: column; gap: 2rem; }
+  .skill-group { }
+  .skill-group-title {
+    font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.3); margin-bottom: 1rem;
+  }
+  .skill-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .skill-pill {
+    display: inline-block; padding: 0.35rem 0.75rem;
+    border: 1px solid rgba(255,255,255,0.12); border-radius: 2px;
+    font-size: 0.8rem; font-family: var(--mono); color: rgba(255,255,255,0.65);
+    transition: all 0.2s;
+  }
+  .skill-pill:hover { border-color: var(--accent-light); color: var(--accent-light); }
+
+  /* EXPERIENCE */
+  #experience { background: var(--off-white); }
+  .exp-list { margin-top: 4rem; }
+  .exp-item {
+    display: grid; grid-template-columns: 1fr 3fr;
+    gap: 3rem; padding: 3rem 0;
+    border-top: 1px solid rgba(0,0,0,0.08);
+  }
+  .exp-item:last-child { border-bottom: 1px solid rgba(0,0,0,0.08); }
+  .exp-meta { }
+  .exp-date { font-size: 0.8rem; color: var(--muted); letter-spacing: 0.04em; margin-bottom: 0.5rem; }
+  .exp-company { font-family: var(--serif); font-size: 1.2rem; line-height: 1.2; }
+  .exp-type {
+    display: inline-block; margin-top: 0.75rem;
+    padding: 0.25rem 0.6rem; font-size: 0.72rem;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    border-radius: 2px;
+  }
+  .exp-type.intern { background: var(--accent-pale); color: var(--accent); }
+  .exp-type.freelance { background: var(--rust-pale); color: var(--rust); }
+  .exp-role { font-weight: 500; font-size: 1rem; margin-bottom: 1rem; }
+  .exp-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.8; }
+  .exp-points { list-style: none; margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  .exp-points li { display: flex; gap: 0.75rem; font-size: 0.88rem; color: var(--muted); }
+  .exp-points li::before { content: '→'; color: var(--accent); flex-shrink: 0; }
+
+  /* PROJECTS */
+  #projects { background: var(--cream); padding-bottom: 8rem; }
+  .projects-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.5px; margin-top: 4rem;
+    background: rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+  .project-card {
+    background: var(--cream); padding: 2.5rem;
+    transition: background 0.25s;
+    display: flex; flex-direction: column; gap: 1rem;
+    position: relative; overflow: hidden;
+  }
+  .project-card:hover { background: var(--off-white); }
+  .project-card.featured {
+    grid-column: 1 / -1;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+  }
+  .project-number {
+    font-family: var(--mono); font-size: 0.72rem; color: var(--warm-mid);
+    letter-spacing: 0.06em; margin-bottom: 0.5rem;
+  }
+  .project-title {
+    font-family: var(--serif); font-size: 1.5rem; line-height: 1.2;
+    margin-bottom: 0.25rem;
+  }
+  .project-subtitle { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.5rem; }
+  .project-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.8; flex: 1; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: auto; }
+  .project-tag {
+    font-family: var(--mono); font-size: 0.72rem;
+    padding: 0.2rem 0.55rem; border-radius: 2px; letter-spacing: 0.02em;
+  }
+  .tag-py { background: var(--gold-pale); color: var(--gold); }
+  .tag-js { background: #fdf7e0; color: #7a6800; }
+  .tag-cloud { background: var(--sky-pale); color: var(--sky); }
+  .tag-db { background: var(--rust-pale); color: var(--rust); }
+  .tag-ai { background: #eee8f5; color: #5a3a8a; }
+  .tag-web { background: var(--accent-pale); color: var(--accent); }
+  .project-links { display: flex; gap: 1rem; margin-top: 1rem; }
+  .project-link {
+    font-size: 0.78rem; color: var(--black); text-decoration: none;
+    display: flex; align-items: center; gap: 0.3rem; font-weight: 500;
+    border-bottom: 1px solid rgba(0,0,0,0.15); padding-bottom: 0.1rem;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .project-link:hover { color: var(--accent); border-color: var(--accent); }
+  .project-highlights { list-style: none; margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.4rem; }
+  .project-highlights li {
+    font-size: 0.82rem; color: var(--muted); display: flex; gap: 0.5rem;
+  }
+  .project-highlights li::before { content: '·'; color: var(--accent); }
+  .featured-left { display: flex; flex-direction: column; }
+  .featured-right { display: flex; flex-direction: column; justify-content: center; gap: 1rem; }
+  .featured-badge {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; margin-bottom: 0.5rem;
+  }
+  .featured-badge::before { content: '★'; font-size: 0.65rem; }
+
+  /* CONTACT */
+  #contact { background: var(--off-white); }
+  .contact-inner {
+    max-width: 700px;
+  }
+  .contact-intro {
+    font-size: 1rem; color: var(--muted); margin-bottom: 3rem; line-height: 1.9;
+  }
+  .contact-items { display: flex; flex-direction: column; gap: 0; }
+  .contact-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 0; border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  .contact-item-left { display: flex; align-items: center; gap: 1rem; }
+  .contact-item-label { font-size: 0.8rem; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; }
+  .contact-item-val { font-size: 0.95rem; color: var(--black); text-decoration: none; transition: color 0.2s; }
+  .contact-item-val:hover { color: var(--accent); }
+  .contact-arrow { font-size: 0.8rem; color: var(--warm-mid); }
+
+  /* FOOTER */
+  footer {
+    background: var(--black); color: rgba(255,255,255,0.3);
+    padding: 2rem 6rem; display: flex; align-items: center;
+    justify-content: space-between; font-size: 0.78rem; letter-spacing: 0.04em;
+  }
+  footer a { color: rgba(255,255,255,0.3); text-decoration: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    nav { padding: 1rem 2rem; }
+    section { padding: 5rem 2.5rem; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 6rem 2.5rem 3rem; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.08); }
+    .hero-right { padding: 3rem 2.5rem; background: var(--cream); }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.featured { grid-column: auto; grid-template-columns: 1fr; gap: 2rem; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    footer { padding: 2rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+    section { padding: 4rem 1.5rem; }
+    .exp-item { padding: 2rem 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Sneha Naik</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-tag">Python Developer · Mumbai</div>
+    <h1 class="hero-name">
+      Building things<br>that <em>think</em>
+    </h1>
+    <p class="hero-desc">
+      Master's graduate specialising in Python, Flask, Django, and Microsoft Azure — with a track record of shipping AI-powered, data-driven web applications from idea to production.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary">View Projects →</a>
+      <a href="https://www.linkedin.com/in/sneha-naik-88b140215/" target="_blank" class="btn-secondary">LinkedIn ↗</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">6+</div>
+        <div class="stat-label">Projects shipped</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Live deployments</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">177+</div>
+        <div class="stat-label">Automated tests written</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Cloud platforms used</div>
+      </div>
+    </div>
+    <div class="hero-scroll">Currently open to opportunities</div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About me</div>
+  <h2 class="section-title">Developer with a builder's mindset</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I'm a <strong>Python & Flask developer</strong> based in Mumbai, with a Master's degree and hands-on experience building and deploying full-stack AI and data-driven applications. I care deeply about writing clean code, designing thoughtful APIs, and getting projects all the way to production.
+      </p>
+      <p>
+        My recent work spans an <strong>AI-powered health tracking platform</strong> with 177+ automated tests, a <strong>community blogging platform</strong> deployed on Railway with HTMX and Supabase, and an <strong>AI text summariser</strong> built on HuggingFace's BART model. I've also built freelance client websites and worked as a Python Developer Intern at Innovura Technologies.
+      </p>
+      <p>
+        I'm drawn to projects where the backend logic is the real challenge — rate limiting, async task queues, FHIR healthcare standards, custom storage backends. I like going deep.
+      </p>
+      <div class="about-links">
+        <a href="mailto:sneha.naik1117@gmail.com" class="about-link">
+          <span class="about-link-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+          </span>
+          sneha.naik1117@gmail.com
+        </a>
+        <a href="https://github.com/sneh1117" target="_blank" class="about-link">
+          <span class="about-link-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          </span>
+          github.com/sneh1117
+        </a>
+        <a href="https://www.linkedin.com/in/sneha-naik-88b140215/" target="_blank" class="about-link">
+          <span class="about-link-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </span>
+          linkedin.com/in/sneha-naik-88b140215
+        </a>
+      </div>
+    </div>
+    <div class="skills-column">
+      <div class="skill-group">
+        <div class="skill-group-title">Languages</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">SQL</span>
+          <span class="skill-pill">JavaScript</span>
+          <span class="skill-pill">HTML/CSS</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Frameworks & Libraries</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Flask</span>
+          <span class="skill-pill">Django</span>
+          <span class="skill-pill">Django REST Framework</span>
+          <span class="skill-pill">SQLAlchemy</span>
+          <span class="skill-pill">Celery</span>
+          <span class="skill-pill">HTMX</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Cloud & Databases</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Microsoft Azure</span>
+          <span class="skill-pill">Railway</span>
+          <span class="skill-pill">Render</span>
+          <span class="skill-pill">PostgreSQL</span>
+          <span class="skill-pill">SQLite</span>
+          <span class="skill-pill">Redis</span>
+          <span class="skill-pill">Supabase</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">APIs & Tools</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Google Gemini API</span>
+          <span class="skill-pill">HuggingFace API</span>
+          <span class="skill-pill">Google Sheets API</span>
+          <span class="skill-pill">Chart.js</span>
+          <span class="skill-pill">Git / GitHub</span>
+          <span class="skill-pill">Postman</span>
+          <span class="skill-pill">GitHub Actions</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Work experience</div>
+  <h2 class="section-title">Where I've worked</h2>
+  <div class="exp-list">
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-date">Feb 2025 – Jun 2025</div>
+        <div class="exp-company">Innovura Technologies Pvt. Ltd.</div>
+        <span class="exp-type intern">Internship</span>
+      </div>
+      <div class="exp-body">
+        <div class="exp-role">Python Developer Intern</div>
+        <ul class="exp-points">
+          <li>Built an AI-powered education platform using Python & Flask, serving dynamic, personalised content to students.</li>
+          <li>Integrated Google Gemini API to auto-generate worksheets and flashcards, reducing manual content creation time significantly.</li>
+          <li>Deployed production application on Microsoft Azure with custom domain configuration and analytics dashboards.</li>
+          <li>Automated certificate generation using Google Sheets API, cutting manual effort by ~70%.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-date">Nov – Dec 2024</div>
+        <div class="exp-company">Snehusan Software Services LLP</div>
+        <span class="exp-type freelance">Freelance</span>
+      </div>
+      <div class="exp-body">
+        <div class="exp-role">Freelance Web Developer</div>
+        <ul class="exp-points">
+          <li>Delivered a fully responsive business website for the client at <a href="https://snehusan.co.in/" target="_blank" style="color: var(--accent);">snehusan.co.in</a>.</li>
+          <li>Implemented mobile-first UI design with performance optimisations for fast load times across devices.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Selected projects</div>
+  <h2 class="section-title">Things I've built</h2>
+
+  <div class="projects-grid">
+
+    <!-- MediTrack — featured -->
+    <div class="project-card featured">
+      <div class="featured-left">
+        <div class="featured-badge">Featured project</div>
+        <div class="project-number">01</div>
+        <h3 class="project-title">MediTrack API</h3>
+        <p class="project-subtitle">Production-ready healthcare REST API</p>
+        <p class="project-desc">
+          A full-featured Django REST API for medication tracking, symptom logging, and AI-powered health insights. Built with FHIR R4 healthcare standards, JWT auth, Google OAuth, Celery async task queue for automated reminders, weekly email digests, and PDF report generation. Includes a custom visitor analytics system with country detection and bot filtering.
+        </p>
+        <ul class="project-highlights">
+          <li>177+ automated tests, 80%+ code coverage, CI via GitHub Actions</li>
+          <li>Celery + Redis for async medication reminders and weekly email digests</li>
+          <li>Google Gemini AI for symptom pattern analysis and health insights</li>
+          <li>FHIR R4 API for EHR system integration with SMART on FHIR auth</li>
+          <li>Custom visitor tracking middleware — no third-party analytics</li>
+        </ul>
+        <div class="project-links">
+          <a href="https://meditrack7.vercel.app/" target="_blank" class="project-link">Live demo ↗</a>
+          <a href="https://meditrack.up.railway.app/api/docs/" target="_blank" class="project-link">API docs ↗</a>
+          <a href="https://github.com/sneh1117/MediTrack" target="_blank" class="project-link">GitHub ↗</a>
+        </div>
+      </div>
+      <div class="featured-right">
+        <div class="project-tags">
+          <span class="project-tag tag-py">Django</span>
+          <span class="project-tag tag-py">Django REST Framework</span>
+          <span class="project-tag tag-ai">Google Gemini API</span>
+          <span class="project-tag tag-db">PostgreSQL</span>
+          <span class="project-tag tag-db">Redis</span>
+          <span class="project-tag tag-py">Celery</span>
+          <span class="project-tag tag-cloud">Railway</span>
+          <span class="project-tag tag-web">HTMX</span>
+          <span class="project-tag tag-py">FHIR R4</span>
+          <span class="project-tag tag-cloud">Vercel</span>
+        </div>
+        <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(0,0,0,0.04); border-radius: 2px; border-left: 3px solid var(--accent);">
+          <div style="font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem;">Live metrics</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div><div style="font-family: 'DM Serif Display', serif; font-size: 1.6rem;">99.5%</div><div style="font-size: 0.72rem; color: var(--muted);">API uptime</div></div>
+            <div><div style="font-family: 'DM Serif Display', serif; font-size: 1.6rem;">500+</div><div style="font-size: 0.72rem; color: var(--muted);">Daily API requests</div></div>
+            <div><div style="font-family: 'DM Serif Display', serif; font-size: 1.6rem;">&lt;5ms</div><div style="font-size: 0.72rem; color: var(--muted);">Analytics overhead</div></div>
+            <div><div style="font-family: 'DM Serif Display', serif; font-size: 1.6rem;">94%</div><div style="font-size: 0.72rem; color: var(--muted);">Cache hit rate</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- StitchTales -->
+    <div class="project-card">
+      <div class="project-number">02</div>
+      <h3 class="project-title">StitchTales</h3>
+      <p class="project-subtitle">Full-featured blogging platform — Django</p>
+      <p class="project-desc">
+        A community blogging platform for the crochet and knitting world. Built end-to-end solo — from database schema to production. Features a custom Supabase storage backend, soft paywall with CSS blur, HTMX-powered likes and bookmarks, Quill rich-text editor, and a from-scratch visitor analytics dashboard.
+      </p>
+      <ul class="project-highlights">
+        <li>Custom Django Storage class for Supabase (replaces S3/Cloudinary)</li>
+        <li>3-second CSS blur paywall — zero dependencies, SEO-friendly</li>
+        <li>HTMX likes & bookmarks with no page reload</li>
+        <li>Paginated full-text search with category, tag, and sort filters</li>
+        <li>Visitor analytics: IP tracking, geolocation, referrers — no Google Analytics</li>
+      </ul>
+      <div class="project-tags">
+        <span class="project-tag tag-py">Django 5.2</span>
+        <span class="project-tag tag-py">Django REST Framework</span>
+        <span class="project-tag tag-db">PostgreSQL</span>
+        <span class="project-tag tag-cloud">Railway</span>
+        <span class="project-tag tag-db">Supabase</span>
+        <span class="project-tag tag-web">HTMX</span>
+        <span class="project-tag tag-js">Quill.js</span>
+      </div>
+      <div class="project-links">
+        <a href="https://stitchtales.up.railway.app" target="_blank" class="project-link">Live demo ↗</a>
+        <a href="https://github.com/sneh1117/stitchtales" target="_blank" class="project-link">GitHub ↗</a>
+      </div>
+    </div>
+
+    <!-- AI Text Summarizer -->
+    <div class="project-card">
+      <div class="project-number">03</div>
+      <h3 class="project-title">Distill</h3>
+      <p class="project-subtitle">AI Text Summariser — Flask + HuggingFace</p>
+      <p class="project-desc">
+        A web app that summarises long-form text using HuggingFace's BART model. Features word count validation, multi-pass chunking for long documents, and summary history stored in SQLite. Clean, minimal interface deployed on Render.
+      </p>
+      <div class="project-tags">
+        <span class="project-tag tag-py">Flask</span>
+        <span class="project-tag tag-ai">HuggingFace BART</span>
+        <span class="project-tag tag-db">SQLite</span>
+        <span class="project-tag tag-cloud">Render</span>
+        <span class="project-tag tag-web">HTML/CSS/JS</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/sneh1117/AI-TextSummarizer" target="_blank" class="project-link">GitHub ↗</a>
+      </div>
+    </div>
+
+    <!-- Fuel Management System -->
+    <div class="project-card">
+      <div class="project-number">04</div>
+      <h3 class="project-title">Fuel Management System</h3>
+      <p class="project-subtitle">Dashboard 360 — Real-time IoT monitoring</p>
+      <p class="project-desc">
+        A real-time fuel sensor monitoring system built at Innovura Technologies. Features live data visualisation and analytics dashboards using Flask and Chart.js, with optimised backend queries and full debugging and feature enhancement work.
+      </p>
+      <div class="project-tags">
+        <span class="project-tag tag-py">Python</span>
+        <span class="project-tag tag-py">Flask</span>
+        <span class="project-tag tag-db">SQLAlchemy</span>
+        <span class="project-tag tag-cloud">Azure</span>
+        <span class="project-tag tag-js">Chart.js</span>
+      </div>
+      <div class="project-links">
+        <a href="https://innovuratech.com/fuel-level-monitoring-system-using-ultrasonic-sensor/" target="_blank" class="project-link">Product page ↗</a>
+      </div>
+    </div>
+
+    <!-- Artistry by Dhanvi -->
+    <div class="project-card">
+      <div class="project-number">05</div>
+      <h3 class="project-title">Artistry by Dhanvi</h3>
+      <p class="project-subtitle">Portfolio website — Makeup artist</p>
+      <p class="project-desc">
+        A responsive portfolio website for a makeup artist, showcasing services, pricing, and a work gallery. Clean UI/UX with interactive JavaScript sections and cross-browser compatibility.
+      </p>
+      <div class="project-tags">
+        <span class="project-tag tag-web">HTML</span>
+        <span class="project-tag tag-web">CSS</span>
+        <span class="project-tag tag-js">JavaScript</span>
+      </div>
+      <div class="project-links">
+        <a href="https://artistrybydhanvi.github.io/" target="_blank" class="project-link">Live site ↗</a>
+      </div>
+    </div>
+
+    <!-- Qualiva -->
+    <div class="project-card">
+      <div class="project-number">06</div>
+      <h3 class="project-title">Qualiva</h3>
+      <p class="project-subtitle">Business website — Static</p>
+      <p class="project-desc">
+        A static business website presenting company offerings, product information, and contact details. Built with reusable UI components and consistent styling across all pages.
+      </p>
+      <div class="project-tags">
+        <span class="project-tag tag-web">HTML</span>
+        <span class="project-tag tag-web">CSS</span>
+        <span class="project-tag tag-js">JavaScript</span>
+      </div>
+      <div class="project-links">
+        <a href="https://qualivademo.github.io/" target="_blank" class="project-link">Live site ↗</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Get in touch</div>
+  <h2 class="section-title">Let's work together</h2>
+  <div class="contact-inner">
+    <p class="contact-intro">
+      I'm currently open to new opportunities — full-time roles, freelance projects, or interesting collaborations. If you're building something with Python, Django, or AI integrations, I'd love to hear from you.
+    </p>
+    <div class="contact-items">
+      <div class="contact-item">
+        <div class="contact-item-left">
+          <div class="contact-item-label">Email</div>
+          <a href="mailto:sneha.naik1117@gmail.com" class="contact-item-val">sneha.naik1117@gmail.com</a>
+        </div>
+        <span class="contact-arrow">↗</span>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-left">
+          <div class="contact-item-label">LinkedIn</div>
+          <a href="https://www.linkedin.com/in/sneha-naik-88b140215/" target="_blank" class="contact-item-val">linkedin.com/in/sneha-naik-88b140215</a>
+        </div>
+        <span class="contact-arrow">↗</span>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-left">
+          <div class="contact-item-label">GitHub</div>
+          <a href="https://github.com/sneh1117" target="_blank" class="contact-item-val">github.com/sneh1117</a>
+        </div>
+        <span class="contact-arrow">↗</span>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-left">
+          <div class="contact-item-label">Location</div>
+          <span class="contact-item-val">Mumbai, India</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 Sneha Naik</span>
+  <span>Designed & built with care · Mumbai</span>
+</footer>
+
+</body>
+</html>
