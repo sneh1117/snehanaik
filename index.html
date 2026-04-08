@@ -23,6 +23,7 @@
   --sky:#2dd4fc;
   --violet:#8b5cf6;
   --gold:#f59e0b;
+  --teal:#0d9488;
   --serif:'Playfair Display',Georgia,serif;
   --sans:'Outfit',system-ui,sans-serif;
   --mono:'JetBrains Mono',monospace;
@@ -115,7 +116,19 @@ nav{
   white-space:nowrap;flex-shrink:0;
 }
 .nav-cta:hover{background:var(--coral);transform:scale(1.04)}
+/* Resume nav link */
+.nav-resume{
+  font-family:var(--mono);font-size:.75rem;font-weight:700;
+  color:var(--ink);background:var(--lime);
+  padding:.5rem 1.1rem;border-radius:100px;text-decoration:none;
+  display:flex;align-items:center;gap:.4rem;
+  transition:all .2s;letter-spacing:.04em;
+  white-space:nowrap;flex-shrink:0;
+  border:2px solid transparent;
+}
+.nav-resume:hover{background:transparent;border-color:var(--ink);transform:scale(1.04)}
 @media(max-width:900px){.nav-links{display:none}}
+@media(max-width:640px){.nav-resume{display:none}}
 
 /* ── HERO ── */
 .hero{
@@ -265,6 +278,24 @@ nav{
 }
 .btn-outline:hover{border-color:var(--ink);background:var(--ink);color:var(--cream);transform:translateY(-2px)}
 
+/* ── RESUME DOWNLOAD BUTTON ── */
+.btn-resume{
+  display:inline-flex;align-items:center;gap:.6rem;
+  padding:.85rem 2rem;background:var(--lime);color:var(--ink);
+  font-size:.9rem;font-weight:800;letter-spacing:.03em;
+  text-decoration:none;border-radius:100px;
+  transition:all .25s;border:2px solid var(--lime);
+  position:relative;overflow:hidden;
+}
+.btn-resume::before{
+  content:'';position:absolute;inset:0;background:var(--ink);
+  transform:translateX(-101%);transition:transform .3s ease;border-radius:100px;
+}
+.btn-resume:hover::before{transform:translateX(0)}
+.btn-resume span{position:relative;z-index:1;transition:color .3s}
+.btn-resume:hover span{color:var(--lime)}
+.btn-resume:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(184,245,66,.35)}
+
 /* hero stats pills row */
 .hero-stats{
   display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;
@@ -329,6 +360,34 @@ nav{
 .about-text p{font-size:clamp(.88rem,1vw,1rem);color:rgba(250,246,239,.55);line-height:2;margin-bottom:1.75rem;font-weight:300}
 .about-text p strong{color:var(--cream);font-weight:700}
 
+/* ── RESUME DOWNLOAD CARD ── */
+.resume-card{
+  margin-top:2.5rem;
+  background:rgba(184,245,66,.08);
+  border:1.5px solid rgba(184,245,66,.2);
+  border-radius:12px;
+  padding:1.5rem;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:1rem;flex-wrap:wrap;
+  transition:all .25s;
+}
+.resume-card:hover{background:rgba(184,245,66,.13);border-color:rgba(184,245,66,.4)}
+.resume-card-left{display:flex;align-items:center;gap:1rem}
+.resume-card-ico{
+  width:44px;height:44px;background:var(--lime);border-radius:10px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.resume-card-title{font-family:var(--serif);font-size:1rem;font-weight:700;color:var(--cream);line-height:1.2;margin-bottom:.2rem}
+.resume-card-sub{font-family:var(--mono);font-size:.62rem;color:rgba(250,246,239,.4);letter-spacing:.06em}
+.resume-dl-btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:.06em;
+  padding:.6rem 1.3rem;background:var(--lime);color:var(--ink);
+  border-radius:100px;text-decoration:none;
+  transition:all .2s;white-space:nowrap;flex-shrink:0;
+}
+.resume-dl-btn:hover{background:var(--cream);transform:translateY(-2px);box-shadow:0 6px 20px rgba(184,245,66,.3)}
+
 /* contact list */
 .contact-rows{margin-top:3rem;border-top:1px solid rgba(255,255,255,.08)}
 .cr{
@@ -388,7 +447,12 @@ nav{
   background:linear-gradient(180deg,var(--coral),var(--gold));
   transform:scaleY(0);transform-origin:bottom;transition:transform .35s cubic-bezier(.16,1,.3,1);
 }
+/* Current job gets teal accent */
+.exp-card.current::before{
+  background:linear-gradient(180deg,var(--teal),var(--lime));
+}
 .exp-card:hover{transform:translateX(6px);box-shadow:-6px 0 28px rgba(255,77,46,.12)}
+.exp-card.current:hover{box-shadow:-6px 0 28px rgba(13,148,136,.15)}
 .exp-card:hover::before{transform:scaleY(1)}
 @media(max-width:640px){.exp-card:hover{transform:none}}
 .exp-date{font-family:var(--mono);font-size:.68rem;color:var(--muted2);margin-bottom:.7rem}
@@ -398,12 +462,14 @@ nav{
   font-weight:700;letter-spacing:.08em;text-transform:uppercase;
   padding:.25rem .65rem;border-radius:100px;
 }
+.et-current{background:rgba(13,148,136,.1);color:var(--teal);border:1px solid rgba(13,148,136,.25)}
 .et-intern{background:rgba(255,77,46,.1);color:var(--coral);border:1px solid rgba(255,77,46,.2)}
 .et-free{background:rgba(245,158,11,.1);color:var(--gold);border:1px solid rgba(245,158,11,.2)}
 .exp-role{font-size:clamp(.95rem,1.2vw,1.05rem);font-weight:800;color:var(--ink);margin-bottom:1.25rem}
 .exp-ul{list-style:none;display:flex;flex-direction:column;gap:.65rem}
 .exp-ul li{display:flex;gap:.75rem;font-size:clamp(.82rem,.9vw,.88rem);color:var(--muted);line-height:1.7;font-weight:400}
 .exp-ul li::before{content:'→';color:var(--coral);flex-shrink:0;font-weight:700;font-family:var(--mono)}
+.exp-card.current .exp-ul li::before{color:var(--teal)}
 
 /* ── PROJECTS — BENTO ── */
 #projects{
@@ -412,7 +478,6 @@ nav{
 }
 .proj-inner{max-width:1300px;margin:0 auto}
 
-/* Bento grid — full 12-col at wide, 2-col at mid, 1-col at mobile */
 .bento{
   display:grid;
   grid-template-columns:repeat(12,1fr);
@@ -435,6 +500,8 @@ nav{
 .bc-distill{grid-column:span 4;grid-row:span 3;background:var(--violet);border-radius:16px;padding:clamp(1.25rem,2vw,2rem);display:flex;flex-direction:column;gap:.65rem;color:white}
 /* FUEL — 4 cols, 3 rows */
 .bc-fuel{grid-column:span 4;grid-row:span 3;background:var(--sky);border-radius:16px;padding:clamp(1.25rem,2vw,2rem);display:flex;flex-direction:column;gap:.65rem;color:var(--ink)}
+/* AI WORKSHEET — 6 cols, 4 rows (NEW) */
+.bc-aiws{grid-column:span 6;grid-row:span 4;background:var(--teal);border-radius:16px;padding:clamp(1.25rem,2vw,2rem);display:flex;flex-direction:column;gap:.65rem;color:white}
 /* SMALL — 6 cols, 4 rows each */
 .bc-art{grid-column:span 6;grid-row:span 4;background:var(--warm);border:1.5px solid rgba(0,0,0,.1);border-radius:16px;padding:clamp(1.25rem,2vw,2rem);display:flex;flex-direction:column;gap:.65rem}
 .bc-qualiva{grid-column:span 6;grid-row:span 4;background:var(--ink2);border-radius:16px;padding:clamp(1.25rem,2vw,2rem);display:flex;flex-direction:column;gap:.65rem;color:var(--cream)}
@@ -443,14 +510,14 @@ nav{
 @media(max-width:1100px){
   .bento{grid-template-columns:1fr 1fr;grid-auto-rows:auto}
   .bc-feat{grid-column:1/-1;grid-row:auto}
-  .bc-metrics,.bc-status,.bc-stitch,.bc-distill,.bc-fuel{grid-column:span 1;grid-row:auto}
+  .bc-metrics,.bc-status,.bc-stitch,.bc-distill,.bc-fuel,.bc-aiws{grid-column:span 1;grid-row:auto}
   .bc-art,.bc-qualiva{grid-column:span 1;grid-row:auto}
 }
 
 /* ── MOBILE: 1-column ── */
 @media(max-width:560px){
   .bento{grid-template-columns:1fr;grid-auto-rows:auto;gap:8px}
-  .bc-feat,.bc-metrics,.bc-status,.bc-stitch,.bc-distill,.bc-fuel,.bc-art,.bc-qualiva,.bc-readme{
+  .bc-feat,.bc-metrics,.bc-status,.bc-stitch,.bc-distill,.bc-fuel,.bc-aiws,.bc-art,.bc-qualiva{
     grid-column:1/-1;grid-row:auto;
   }
 }
@@ -469,6 +536,7 @@ nav{
 .bc-feat .bc-tag{border-color:rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:rgba(250,246,239,.7)}
 .bc-distill .bc-tag,.bc-status .bc-tag{border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.15);color:white}
 .bc-fuel .bc-tag{border-color:rgba(0,0,0,.12);background:rgba(0,0,0,.08)}
+.bc-aiws .bc-tag{border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.15);color:white}
 
 .bc-links{display:flex;gap:1rem;flex-wrap:wrap}
 .bc-link{
@@ -484,6 +552,8 @@ nav{
 .bc-qualiva .bc-link:hover{color:var(--lime);border-color:var(--lime)}
 .bc-distill .bc-link{color:rgba(255,255,255,.6);border-color:rgba(255,255,255,.2)}
 .bc-distill .bc-link:hover{color:white;border-color:white}
+.bc-aiws .bc-link{color:rgba(255,255,255,.65);border-color:rgba(255,255,255,.25)}
+.bc-aiws .bc-link:hover{color:white;border-color:white}
 
 /* featured bits */
 .feat-badge{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lime);margin-bottom:.5rem}
@@ -616,6 +686,9 @@ nav{
     <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
   </ul>
+  <a href="Sneha_Naik_Resume.pdf" download="Sneha_Naik_Resume.pdf" class="nav-resume">
+    ↓ Resume
+  </a>
   <a href="#contact" class="nav-cta">
     <span>💌</span> Hire me
   </a>
@@ -626,11 +699,11 @@ nav{
   <div class="hero-top">
     <div class="hero-badge">
       <div class="badge-dot"></div>
-      Available for hire · Mumbai
+      Employed · Open to opportunities · Mumbai
     </div>
     <div class="hero-coords">
       19.0760° N, 72.8777° E<br>
-      Python Developer<br>
+      Python · Django · React<br>
       <span style="color:var(--coral);font-weight:700">Open to opportunities</span>
     </div>
   </div>
@@ -647,7 +720,7 @@ nav{
         <div class="pill-inner">
           <span>Python</span>
           <span>Django</span>
-          <span>Flask</span>
+          <span>React</span>
         </div>
       </div>
     </div>
@@ -659,7 +732,7 @@ nav{
 
   <div class="hero-bottom">
     <p class="hero-desc">
-      Master's grad. <strong>Python · Django · Flask · Azure.</strong><br>
+      Master's grad. <strong>Python · Django · React · Azure.</strong><br>
       I write tests. I set up CI. I ship to production. I care about the craft — every API endpoint, every async task, every query optimised.
     </p>
     <div class="hero-actions">
@@ -673,7 +746,7 @@ nav{
           <span class="sc-label">Tests</span>
         </div>
         <div class="stat-chip">
-          <span class="sc-num" data-target="2" style="color:var(--violet)">0</span>
+          <span class="sc-num" data-target="3" style="color:var(--violet)">0</span>
           <span class="sc-label">Live apps</span>
         </div>
         <div class="stat-chip">
@@ -683,6 +756,7 @@ nav{
       </div>
       <div class="hero-btns">
         <a href="#projects" class="btn-coral"><span>See my work →</span></a>
+        <a href="Sneha_Naik_Resume.pdf" download="Sneha_Naik_Resume.pdf" class="btn-resume"><span>↓ Download CV</span></a>
         <a href="mailto:sneha.naik1117@gmail.com" class="btn-outline">Get in touch ↗</a>
       </div>
     </div>
@@ -692,8 +766,8 @@ nav{
 <!-- TICKER -->
 <div class="ticker">
   <div class="ticker-track">
-    <span class="hi">Python Developer</span><span>Flask</span><span>Django REST Framework</span><span>Microsoft Azure</span><span class="hi">Open to Work</span><span>PostgreSQL</span><span>Celery + Redis</span><span>GitHub Actions</span><span>FHIR R4</span><span class="hi">Google Gemini API</span><span>HuggingFace</span><span>HTMX</span><span>Supabase</span><span>Railway</span><span>Mumbai India</span>
-    <span class="hi">Python Developer</span><span>Flask</span><span>Django REST Framework</span><span>Microsoft Azure</span><span class="hi">Open to Work</span><span>PostgreSQL</span><span>Celery + Redis</span><span>GitHub Actions</span><span>FHIR R4</span><span class="hi">Google Gemini API</span><span>HuggingFace</span><span>HTMX</span><span>Supabase</span><span>Railway</span><span>Mumbai India</span>
+    <span class="hi">Python Developer</span><span>Flask</span><span>Django REST Framework</span><span>React.js</span><span class="hi">Currently Employed</span><span>PostgreSQL</span><span>Celery + Redis</span><span>GitHub Actions</span><span>FHIR R4</span><span class="hi">Google Gemini API</span><span>OpenRouter API</span><span>HuggingFace</span><span>HTMX</span><span>Supabase</span><span>Microsoft Azure</span><span>Railway</span><span>Mumbai India</span>
+    <span class="hi">Python Developer</span><span>Flask</span><span>Django REST Framework</span><span>React.js</span><span class="hi">Currently Employed</span><span>PostgreSQL</span><span>Celery + Redis</span><span>GitHub Actions</span><span>FHIR R4</span><span class="hi">Google Gemini API</span><span>OpenRouter API</span><span>HuggingFace</span><span>HTMX</span><span>Supabase</span><span>Microsoft Azure</span><span>Railway</span><span>Mumbai India</span>
   </div>
 </div>
 
@@ -705,9 +779,31 @@ nav{
     <h2 class="about-big reveal">Developer<br>with a <em>builder's</em><br>mindset.</h2>
     <div class="about-grid">
       <div class="about-text reveal">
-        <p>I'm a <strong>Python & Flask developer</strong> based in Mumbai, with a Master's degree and hands-on experience building and deploying full-stack AI and data-driven applications. I care deeply about writing clean code, designing thoughtful APIs, and getting projects all the way to production.</p>
-        <p>My recent work spans an <strong>AI-powered health tracking platform</strong> with 177+ automated tests, a <strong>community blogging platform</strong> deployed on Railway with HTMX and Supabase, and an <strong>AI text summariser</strong> built on HuggingFace's BART model. I've also built freelance client websites and worked as a Python Developer Intern at Innovura Technologies.</p>
+        <p>I'm a <strong>Python & Django developer</strong> based in Mumbai, with a Master's degree and hands-on experience building and deploying full-stack AI and data-driven applications. Currently working as a <strong>Software Developer at Xangars Infratech</strong>, building scalable healthcare systems with Django and React.</p>
+        <p>My work spans an <strong>AI-powered health tracking platform</strong> with 177+ automated tests, a <strong>community blogging platform</strong> deployed on Railway, an <strong>AI worksheet generator</strong> using OpenRouter API, and an <strong>AI text summariser</strong> built on HuggingFace's BART model. I've also freelanced client websites and interned at Innovura Technologies.</p>
         <p>I'm drawn to projects where the backend logic is the real challenge — rate limiting, async task queues, FHIR healthcare standards, custom storage backends. <strong>I like going deep.</strong></p>
+
+        <!-- RESUME DOWNLOAD CARD -->
+        <div class="resume-card">
+          <div class="resume-card-left">
+            <div class="resume-card-ico">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="12" y1="18" x2="12" y2="12"/>
+                <polyline points="9 15 12 18 15 15"/>
+              </svg>
+            </div>
+            <div>
+              <div class="resume-card-title">Sneha Naik — Resume</div>
+              <div class="resume-card-sub">PDF · Updated April 2026</div>
+            </div>
+          </div>
+          <a href="Sneha_Naik_Resume.pdf" download="Sneha_Naik_Resume.pdf" class="resume-dl-btn">
+            ↓ Download PDF
+          </a>
+        </div>
+
         <div class="contact-rows">
           <a href="mailto:sneha.naik1117@gmail.com" class="cr">
             <div class="cr-left">
@@ -734,9 +830,9 @@ nav{
       </div>
       <div class="skills-panel reveal rd2">
         <div><div class="sp-title">Languages</div><div class="sp-pills"><span class="sp-pill">Python</span><span class="sp-pill">SQL</span><span class="sp-pill">JavaScript</span><span class="sp-pill">HTML/CSS</span></div></div>
-        <div><div class="sp-title">Frameworks & Libraries</div><div class="sp-pills"><span class="sp-pill">Flask</span><span class="sp-pill">Django</span><span class="sp-pill">DRF</span><span class="sp-pill">SQLAlchemy</span><span class="sp-pill">Celery</span><span class="sp-pill">HTMX</span></div></div>
-        <div><div class="sp-title">Cloud & Databases</div><div class="sp-pills"><span class="sp-pill">Microsoft Azure</span><span class="sp-pill">Railway</span><span class="sp-pill">Render</span><span class="sp-pill">PostgreSQL</span><span class="sp-pill">Redis</span><span class="sp-pill">Supabase</span><span class="sp-pill">SQLite</span></div></div>
-        <div><div class="sp-title">APIs & Tools</div><div class="sp-pills"><span class="sp-pill">Google Gemini API</span><span class="sp-pill">HuggingFace</span><span class="sp-pill">Google Sheets API</span><span class="sp-pill">Chart.js</span><span class="sp-pill">GitHub Actions</span></div></div>
+        <div><div class="sp-title">Frameworks & Libraries</div><div class="sp-pills"><span class="sp-pill">Flask</span><span class="sp-pill">Django</span><span class="sp-pill">DRF</span><span class="sp-pill">React</span><span class="sp-pill">SQLAlchemy</span><span class="sp-pill">Celery</span><span class="sp-pill">HTMX</span></div></div>
+        <div><div class="sp-title">Cloud & Databases</div><div class="sp-pills"><span class="sp-pill">Microsoft Azure</span><span class="sp-pill">Railway</span><span class="sp-pill">Render</span><span class="sp-pill">PostgreSQL</span><span class="sp-pill">Azure SQL</span><span class="sp-pill">Redis</span><span class="sp-pill">Supabase</span><span class="sp-pill">SQLite</span></div></div>
+        <div><div class="sp-title">APIs & Tools</div><div class="sp-pills"><span class="sp-pill">Google Gemini API</span><span class="sp-pill">OpenRouter API</span><span class="sp-pill">HuggingFace</span><span class="sp-pill">Google Sheets API</span><span class="sp-pill">Chart.js</span><span class="sp-pill">GitHub Actions</span><span class="sp-pill">Postman</span></div></div>
       </div>
     </div>
   </div>
@@ -750,7 +846,26 @@ nav{
       Where I've <em style="font-style:italic;color:var(--coral)">worked</em>
     </h2>
     <div class="exp-list">
-      <div class="exp-card reveal">
+
+      <!-- CURRENT JOB — NEW -->
+      <div class="exp-card current reveal">
+        <div>
+          <div class="exp-date">Feb 2026 — Present</div>
+          <div class="exp-company">Xangars Infratech</div>
+          <span class="exp-tag et-current">● Current Role</span>
+        </div>
+        <div>
+          <div class="exp-role">Software Developer</div>
+          <ul class="exp-ul">
+            <li>Engineered a scalable healthcare web application to manage patient records, appointments, and prescriptions.</li>
+            <li>Developed RESTful APIs using Django and built responsive UI components with React.js.</li>
+            <li>Optimised PostgreSQL database performance through efficient schema design and query optimisation.</li>
+            <li>Implemented secure authentication and deployed the application on cloud infrastructure.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-card reveal rd1">
         <div>
           <div class="exp-date">Feb 2025 – Jun 2025</div>
           <div class="exp-company">Innovura Technologies Pvt. Ltd.</div>
@@ -766,7 +881,8 @@ nav{
           </ul>
         </div>
       </div>
-      <div class="exp-card reveal rd1">
+
+      <div class="exp-card reveal rd2">
         <div>
           <div class="exp-date">Nov – Dec 2024</div>
           <div class="exp-company">Snehusan Software Services LLP</div>
@@ -780,6 +896,7 @@ nav{
           </ul>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -846,7 +963,7 @@ nav{
         <div class="bc-title">StitchTales</div>
         <div class="bc-sub">Blogging platform — Django</div>
         <div class="bc-desc">Community blogging for crochet lovers. Custom Supabase storage backend, CSS blur paywall, HTMX likes & bookmarks, and from-scratch visitor analytics.</div>
-        <div class="bc-tags" style="border:none">
+        <div class="bc-tags">
           <span class="bc-tag" style="background:rgba(0,0,0,.07)">Django 5.2</span><span class="bc-tag" style="background:rgba(0,0,0,.07)">HTMX</span><span class="bc-tag" style="background:rgba(0,0,0,.07)">Supabase</span><span class="bc-tag" style="background:rgba(0,0,0,.07)">Railway</span>
         </div>
         <div class="bc-links">
@@ -883,13 +1000,27 @@ nav{
         </div>
       </div>
 
+      <!-- AI WORKSHEET GENERATOR — NEW -->
+      <div class="bc-aiws">
+        <div class="bc-num" style="opacity:.6">05</div>
+        <div class="bc-title">AI Worksheet Generator</div>
+        <div class="bc-sub" style="opacity:.8">React + Flask + OpenRouter API</div>
+        <div class="bc-desc" style="opacity:.8">AI tool that generates worksheets and flashcards from user input with real-time content generation. Robust response parsing and error handling via OpenRouter API.</div>
+        <div class="bc-tags">
+          <span class="bc-tag">React</span><span class="bc-tag">Flask</span><span class="bc-tag">OpenRouter API</span>
+        </div>
+        <div class="bc-links">
+          <a href="https://github.com/sneh1117" target="_blank" class="bc-link">GitHub ↗</a>
+        </div>
+      </div>
+
       <!-- ARTISTRY -->
       <div class="bc-art">
-        <div class="bc-num">05</div>
+        <div class="bc-num">06</div>
         <div class="bc-title">Artistry by Dhanvi</div>
         <div class="bc-sub">Portfolio website · Makeup artist</div>
         <div class="bc-desc">Responsive portfolio showcasing services, pricing, and gallery. Clean UI/UX with interactive sections and cross-browser compatibility.</div>
-        <div class="bc-tags" style="border:none">
+        <div class="bc-tags">
           <span class="bc-tag" style="background:rgba(0,0,0,.07)">HTML</span><span class="bc-tag" style="background:rgba(0,0,0,.07)">CSS</span><span class="bc-tag" style="background:rgba(0,0,0,.07)">JavaScript</span>
         </div>
         <div class="bc-links">
@@ -899,7 +1030,7 @@ nav{
 
       <!-- QUALIVA -->
       <div class="bc-qualiva">
-        <div class="bc-num" style="opacity:.4">06</div>
+        <div class="bc-num" style="opacity:.4">07</div>
         <div class="bc-title">Qualiva</div>
         <div class="bc-sub" style="opacity:.6">Business website · Static</div>
         <div class="bc-desc" style="opacity:.55">Static business site with reusable UI components, consistent styling, product info and contact — delivered on schedule for a real client.</div>
@@ -908,44 +1039,6 @@ nav{
         </div>
         <div class="bc-links">
           <a href="https://qualivademo.github.io/" target="_blank" class="bc-link">Live site ↗</a>
-        </div>
-      </div>
-           <!-- README GEN -->
-      <div class="bc-readme" style="grid-column:span 12;grid-row:span 4;background:#1a1208;border:1.5px solid rgba(245,158,11,.25);border-radius:16px;padding:clamp(1.25rem,2vw,2rem);display:flex;flex-direction:column;gap:.65rem;color:var(--cream);position:relative;overflow:hidden;">
-        <div style="position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(245,158,11,.15),transparent 70%);border-radius:50%;pointer-events:none"></div>
-        <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem;flex:1">
-          <div style="display:flex;flex-direction:column;gap:.65rem;flex:1;min-width:min(100%,300px)">
-            <div class="bc-num" style="opacity:.4">07</div>
-            <div style="display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)">&#9889; Live on GitHub Pages</div>
-            <div class="bc-title">README Generator</div>
-            <div class="bc-sub" style="opacity:.6">AI-powered &middot; React + Gemini AI</div>
-            <div class="bc-desc" style="opacity:.6">Generate professional GitHub READMEs instantly. Pick from 6 project templates, let Gemini AI write the content, then edit live in split-screen preview &mdash; and download or copy with one click.</div>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:1rem;justify-content:flex-end">
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.65rem">
-              <div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.15);border-radius:10px;padding:.75rem 1rem">
-                <div style="font-family:var(--serif);font-size:1.6rem;font-weight:900;color:var(--gold);line-height:1">6</div>
-                <div style="font-family:var(--mono);font-size:.55rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(245,158,11,.5);margin-top:.2rem">Templates</div>
-              </div>
-              <div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.15);border-radius:10px;padding:.75rem 1rem">
-                <div style="font-family:var(--serif);font-size:1.6rem;font-weight:900;color:var(--gold);line-height:1">3</div>
-                <div style="font-family:var(--mono);font-size:.55rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(245,158,11,.5);margin-top:.2rem">View modes</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;margin-top:.5rem">
-          <div class="bc-tags" style="margin-top:0">
-            <span class="bc-tag" style="background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.25);color:var(--gold)">React</span>
-            <span class="bc-tag" style="background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.25);color:var(--gold)">Gemini AI</span>
-            <span class="bc-tag" style="background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.25);color:var(--gold)">Vite</span>
-            <span class="bc-tag" style="background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.25);color:var(--gold)">Node.js</span>
-            <span class="bc-tag" style="background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.25);color:var(--gold)">GitHub Pages</span>
-          </div>
-          <div class="bc-links">
-            <a href="https://sneh1117.github.io/Readme_Gen/" target="_blank" class="bc-link" style="color:rgba(245,158,11,.8);border-color:rgba(245,158,11,.3)">Live site ↗</a>
-            <a href="https://github.com/sneh1117/Readme_Gen" target="_blank" class="bc-link" style="color:rgba(245,158,11,.8);border-color:rgba(245,158,11,.3)">GitHub ↗</a>
-          </div>
         </div>
       </div>
 
@@ -961,11 +1054,16 @@ nav{
       <div>
         <div class="contact-eyebrow">Get in touch</div>
         <h2 class="contact-big">Let's build<br>something <em>great</em><br>together.</h2>
-        <p class="contact-sub">I'm currently open to new opportunities — full-time roles, freelance projects, or interesting collaborations. If you're building something with Python, Django, or AI integrations, I'd love to hear from you.</p>
+        <p class="contact-sub">I'm currently employed and open to new opportunities — full-time roles, freelance projects, or interesting collaborations. If you're building something with Python, Django, React, or AI integrations, I'd love to hear from you.</p>
       </div>
-      <a href="mailto:sneha.naik1117@gmail.com" class="contact-email-big">
-        sneha.naik1117@gmail.com ↗
-      </a>
+      <div style="display:flex;flex-direction:column;gap:1rem">
+        <a href="mailto:sneha.naik1117@gmail.com" class="contact-email-big">
+          sneha.naik1117@gmail.com ↗
+        </a>
+        <a href="Sneha_Naik_Resume.pdf" download="Sneha_Naik_Resume.pdf" style="display:inline-flex;align-items:center;gap:.6rem;font-family:var(--mono);font-size:.78rem;font-weight:700;color:var(--lime);text-decoration:none;border-bottom:1px solid rgba(184,245,66,.3);padding-bottom:.4rem;width:fit-content;transition:all .2s" onmouseover="this.style.color='white';this.style.borderColor='white'" onmouseout="this.style.color='var(--lime)';this.style.borderColor='rgba(184,245,66,.3)'">
+          ↓ Download Resume (PDF)
+        </a>
+      </div>
     </div>
     <div class="contact-right reveal rd1">
       <a href="https://www.linkedin.com/in/sneha-naik-88b140215/" target="_blank" class="c-row">
@@ -988,6 +1086,16 @@ nav{
         </div>
         <span class="c-row-arr">↗</span>
       </a>
+      <a href="Sneha_Naik_Resume.pdf" download="Sneha_Naik_Resume.pdf" class="c-row">
+        <div class="c-row-left">
+          <div class="c-row-ico">📄</div>
+          <div>
+            <div class="c-row-label">Resume</div>
+            <div class="c-row-val">Download PDF</div>
+          </div>
+        </div>
+        <span class="c-row-arr">↓</span>
+      </a>
       <div class="c-row" style="cursor:default">
         <div class="c-row-left">
           <div class="c-row-ico">📍</div>
@@ -1002,17 +1110,17 @@ nav{
           <div class="c-row-ico">✅</div>
           <div>
             <div class="c-row-label">Status</div>
-            <div class="c-row-val" style="color:var(--lime)">Open to work</div>
+            <div class="c-row-val" style="color:var(--lime)">Employed · Open to opportunities</div>
           </div>
         </div>
       </div>
     </div>
   </div>
   <div class="footer-strip">
-    <span>© 2025 Sneha Naik — Made with care & caffeine ☕</span>
+    <span>© 2026 Sneha Naik — Made with care & caffeine ☕</span>
     <div class="footer-right">
       <div class="footer-pulse"></div>
-      <span>Open to work · Mumbai, India</span>
+      <span>Employed · Open to opportunities · Mumbai, India</span>
     </div>
   </div>
 </section>
@@ -1038,7 +1146,7 @@ if(window.innerWidth > 768){
     blob.style.left=bx+'px'; blob.style.top=by+'px';
     requestAnimationFrame(animBlob);
   })();
-  document.querySelectorAll('a,button,.stat-chip,.bc-feat,.bc-metrics,.bc-status,.bc-stitch,.bc-distill,.bc-fuel,.bc-art,.bc-qualiva,.sp-pill,.exp-card').forEach(el=>{
+  document.querySelectorAll('a,button,.stat-chip,.bc-feat,.bc-metrics,.bc-status,.bc-stitch,.bc-distill,.bc-fuel,.bc-art,.bc-qualiva,.bc-aiws,.sp-pill,.exp-card,.resume-card').forEach(el=>{
     el.addEventListener('mouseenter',()=>blob.classList.add('link'));
     el.addEventListener('mouseleave',()=>blob.classList.remove('link'));
   });
@@ -1095,7 +1203,7 @@ if(window.matchMedia('(hover:hover)').matches){
   });
 
   /* ── MAGNETIC BUTTONS ── */
-  document.querySelectorAll('.btn-coral,.btn-outline,.nav-cta').forEach(btn=>{
+  document.querySelectorAll('.btn-coral,.btn-outline,.btn-resume,.nav-cta,.nav-resume').forEach(btn=>{
     btn.addEventListener('mousemove',e=>{
       const r=btn.getBoundingClientRect();
       const dx=e.clientX-(r.left+r.width/2);
