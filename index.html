@@ -24,6 +24,9 @@
   --violet:#8b5cf6;
   --gold:#f59e0b;
   --teal:#0d9488;
+  --rose:#f43f5e;
+  --amber:#d97706;
+  --emerald:#059669;
   --serif:'Playfair Display',Georgia,serif;
   --sans:'Outfit',system-ui,sans-serif;
   --mono:'JetBrains Mono',monospace;
@@ -116,7 +119,6 @@ nav{
   white-space:nowrap;flex-shrink:0;
 }
 .nav-cta:hover{background:var(--coral);transform:scale(1.04)}
-/* Resume nav link */
 .nav-resume{
   font-family:var(--mono);font-size:.75rem;font-weight:700;
   color:var(--ink);background:var(--lime);
@@ -138,7 +140,6 @@ nav{
   max-width:1600px;margin:0 auto;width:100%;
 }
 
-/* aurora background */
 .aurora{
   position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
 }
@@ -154,7 +155,6 @@ nav{
   to{transform:translate(60px,-60px) scale(1.2)}
 }
 
-/* hero top row */
 .hero-top{
   display:flex;align-items:flex-start;justify-content:space-between;
   margin-bottom:clamp(1.5rem,3vw,2.5rem);position:relative;z-index:2;
@@ -184,7 +184,6 @@ nav{
 }
 @media(max-width:480px){.hero-coords{display:none}}
 
-/* big headline */
 .hero-headline{
   position:relative;z-index:2;
   margin-bottom:clamp(2rem,4vw,3rem);
@@ -210,7 +209,6 @@ nav{
 }
 .hero-word.lime{color:var(--lime);-webkit-text-stroke:0}
 
-/* rotating tag pill */
 .hero-rotating-pill{
   display:inline-flex;align-items:center;gap:.6rem;
   background:var(--ink);color:var(--cream);
@@ -233,7 +231,6 @@ nav{
   100%{transform:translateY(0)}
 }
 
-/* hero bottom bar */
 .hero-bottom{
   display:flex;align-items:flex-end;justify-content:space-between;
   position:relative;z-index:2;
@@ -278,7 +275,6 @@ nav{
 }
 .btn-outline:hover{border-color:var(--ink);background:var(--ink);color:var(--cream);transform:translateY(-2px)}
 
-/* ── RESUME DOWNLOAD BUTTON ── */
 .btn-resume{
   display:inline-flex;align-items:center;gap:.6rem;
   padding:.85rem 2rem;background:var(--lime);color:var(--ink);
@@ -296,7 +292,6 @@ nav{
 .btn-resume:hover span{color:var(--lime)}
 .btn-resume:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(184,245,66,.35)}
 
-/* hero stats pills row */
 .hero-stats{
   display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;
   animation:fadein .8s ease .5s both;
@@ -360,7 +355,6 @@ nav{
 .about-text p{font-size:clamp(.88rem,1vw,1rem);color:rgba(250,246,239,.55);line-height:2;margin-bottom:1.75rem;font-weight:300}
 .about-text p strong{color:var(--cream);font-weight:700}
 
-/* ── RESUME DOWNLOAD CARD ── */
 .resume-card{
   margin-top:2.5rem;
   background:rgba(184,245,66,.08);
@@ -388,7 +382,6 @@ nav{
 }
 .resume-dl-btn:hover{background:var(--cream);transform:translateY(-2px);box-shadow:0 6px 20px rgba(184,245,66,.3)}
 
-/* contact list */
 .contact-rows{margin-top:3rem;border-top:1px solid rgba(255,255,255,.08)}
 .cr{
   display:flex;align-items:center;justify-content:space-between;
@@ -407,7 +400,6 @@ nav{
 }
 .cr-arrow{transition:all .2s;color:rgba(255,255,255,.2);flex-shrink:0}
 
-/* skills side */
 .skills-panel{display:flex;flex-direction:column;gap:2rem}
 .sp-title{
   font-family:var(--mono);font-size:.6rem;font-weight:700;
@@ -447,7 +439,6 @@ nav{
   background:linear-gradient(180deg,var(--coral),var(--gold));
   transform:scaleY(0);transform-origin:bottom;transition:transform .35s cubic-bezier(.16,1,.3,1);
 }
-/* Current job gets teal accent */
 .exp-card.current::before{
   background:linear-gradient(180deg,var(--teal),var(--lime));
 }
@@ -478,6 +469,13 @@ nav{
 }
 .proj-inner{max-width:1300px;margin:0 auto}
 
+/* ── SECTION DIVIDERS within projects ── */
+.proj-section-label{
+  font-family:var(--mono);font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted2);margin:3rem 0 1rem;display:flex;align-items:center;gap:.75rem;
+}
+.proj-section-label::before,.proj-section-label::after{content:'';flex:1;height:1px;background:rgba(0,0,0,.1)}
+
 .bento{
   display:grid;
   grid-template-columns:repeat(12,1fr);
@@ -500,29 +498,46 @@ nav{
 .bc-distill{grid-column:span 4;grid-row:span 3;background:var(--violet);border-radius:16px;padding:clamp(1.25rem,2vw,2rem);display:flex;flex-direction:column;gap:.65rem;color:white}
 /* FUEL — 4 cols, 3 rows */
 .bc-fuel{grid-column:span 4;grid-row:span 3;background:var(--sky);border-radius:16px;padding:clamp(1.25rem,2vw,2rem);display:flex;flex-direction:column;gap:.65rem;color:var(--ink)}
-/* AI WORKSHEET — 6 cols, 4 rows (NEW) */
-.bc-aiws{grid-column:span 6;grid-row:span 4;background:var(--teal);border-radius:16px;padding:clamp(1.25rem,2vw,2rem);display:flex;flex-direction:column;gap:.65rem;color:white}
+
+/* MEDITRACK FRONTEND — 6 cols, 4 rows */
+.bc-mtfrontend{grid-column:span 6;grid-row:span 4;background:linear-gradient(135deg,#1e1b4b,#312e81);border-radius:16px;padding:clamp(1.25rem,2vw,2rem);display:flex;flex-direction:column;gap:.65rem;color:white;position:relative;overflow:hidden}
+.bc-mtfrontend::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(139,92,246,.35),transparent 70%);pointer-events:none}
+
 /* SMALL — 6 cols, 4 rows each */
 .bc-art{grid-column:span 6;grid-row:span 4;background:var(--warm);border:1.5px solid rgba(0,0,0,.1);border-radius:16px;padding:clamp(1.25rem,2vw,2rem);display:flex;flex-direction:column;gap:.65rem}
 .bc-qualiva{grid-column:span 6;grid-row:span 4;background:var(--ink2);border-radius:16px;padding:clamp(1.25rem,2vw,2rem);display:flex;flex-direction:column;gap:.65rem;color:var(--cream)}
+
+/* ── FUN / HUMAN PROJECTS ── */
+/* TRIVIA — 4 cols, 4 rows */
+.bc-trivia{grid-column:span 4;grid-row:span 4;background:linear-gradient(135deg,#f59e0b,#d97706);border-radius:16px;padding:clamp(1.25rem,2vw,2rem);display:flex;flex-direction:column;gap:.65rem;color:var(--ink)}
+/* TYPING TEST — 4 cols, 4 rows */
+.bc-typing{grid-column:span 4;grid-row:span 4;background:var(--ink);border-radius:16px;padding:clamp(1.25rem,2vw,2rem);display:flex;flex-direction:column;gap:.65rem;color:var(--cream);position:relative;overflow:hidden}
+.bc-typing::after{content:'⌨️';position:absolute;bottom:-10px;right:10px;font-size:5rem;opacity:.08;pointer-events:none}
+/* DOPAMINE — 4 cols, 5 rows */
+.bc-dopamine{grid-column:span 4;grid-row:span 5;background:linear-gradient(160deg,#ec4899,#8b5cf6);border-radius:16px;padding:clamp(1.25rem,2vw,2rem);display:flex;flex-direction:column;gap:.65rem;color:white}
+/* SOMEONE WATCHING — 4 cols, 5 rows */
+.bc-watching{grid-column:span 4;grid-row:span 5;background:#0a0a0a;border:1px solid rgba(255,77,46,.2);border-radius:16px;padding:clamp(1.25rem,2vw,2rem);display:flex;flex-direction:column;gap:.65rem;color:white;position:relative;overflow:hidden}
+.bc-watching::before{content:'👁️';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:8rem;opacity:.04;pointer-events:none}
+/* README GEN — 4 cols, 3 rows */
+.bc-readme{grid-column:span 4;grid-row:span 3;background:rgba(5,150,105,.15);border:1.5px solid rgba(5,150,105,.3);border-radius:16px;padding:clamp(1.25rem,2vw,2rem);display:flex;flex-direction:column;gap:.65rem;color:var(--ink)}
 
 /* ── TABLET: 2-column ── */
 @media(max-width:1100px){
   .bento{grid-template-columns:1fr 1fr;grid-auto-rows:auto}
   .bc-feat{grid-column:1/-1;grid-row:auto}
-  .bc-metrics,.bc-status,.bc-stitch,.bc-distill,.bc-fuel,.bc-aiws{grid-column:span 1;grid-row:auto}
+  .bc-metrics,.bc-status,.bc-stitch,.bc-distill,.bc-fuel,.bc-mtfrontend{grid-column:span 1;grid-row:auto}
   .bc-art,.bc-qualiva{grid-column:span 1;grid-row:auto}
+  .bc-trivia,.bc-typing,.bc-dopamine,.bc-watching,.bc-readme{grid-column:span 1;grid-row:auto}
 }
 
 /* ── MOBILE: 1-column ── */
 @media(max-width:560px){
   .bento{grid-template-columns:1fr;grid-auto-rows:auto;gap:8px}
-  .bc-feat,.bc-metrics,.bc-status,.bc-stitch,.bc-distill,.bc-fuel,.bc-aiws,.bc-art,.bc-qualiva{
+  .bc-feat,.bc-metrics,.bc-status,.bc-stitch,.bc-distill,.bc-fuel,.bc-mtfrontend,.bc-art,.bc-qualiva,.bc-trivia,.bc-typing,.bc-dopamine,.bc-watching,.bc-readme{
     grid-column:1/-1;grid-row:auto;
   }
 }
 
-/* bento card hover */
 .bento>*{transition:transform .3s,box-shadow .3s}
 .bento>*:hover{transform:scale(1.012);box-shadow:0 12px 40px rgba(0,0,0,.18);z-index:2}
 @media(max-width:768px){.bento>*:hover{transform:none;box-shadow:none}}
@@ -536,7 +551,12 @@ nav{
 .bc-feat .bc-tag{border-color:rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:rgba(250,246,239,.7)}
 .bc-distill .bc-tag,.bc-status .bc-tag{border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.15);color:white}
 .bc-fuel .bc-tag{border-color:rgba(0,0,0,.12);background:rgba(0,0,0,.08)}
-.bc-aiws .bc-tag{border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.15);color:white}
+.bc-mtfrontend .bc-tag{border-color:rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:rgba(255,255,255,.8)}
+.bc-trivia .bc-tag{border-color:rgba(0,0,0,.15);background:rgba(0,0,0,.1)}
+.bc-typing .bc-tag{border-color:rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:rgba(250,246,239,.7)}
+.bc-dopamine .bc-tag{border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.15)}
+.bc-watching .bc-tag{border-color:rgba(255,77,46,.3);background:rgba(255,77,46,.1);color:rgba(255,255,255,.7)}
+.bc-readme .bc-tag{border-color:rgba(5,150,105,.3);background:rgba(5,150,105,.1)}
 
 .bc-links{display:flex;gap:1rem;flex-wrap:wrap}
 .bc-link{
@@ -552,8 +572,18 @@ nav{
 .bc-qualiva .bc-link:hover{color:var(--lime);border-color:var(--lime)}
 .bc-distill .bc-link{color:rgba(255,255,255,.6);border-color:rgba(255,255,255,.2)}
 .bc-distill .bc-link:hover{color:white;border-color:white}
-.bc-aiws .bc-link{color:rgba(255,255,255,.65);border-color:rgba(255,255,255,.25)}
-.bc-aiws .bc-link:hover{color:white;border-color:white}
+.bc-mtfrontend .bc-link{color:rgba(255,255,255,.6);border-color:rgba(255,255,255,.2)}
+.bc-mtfrontend .bc-link:hover{color:var(--lime);border-color:var(--lime)}
+.bc-trivia .bc-link{color:rgba(26,18,8,.6);border-color:rgba(26,18,8,.2)}
+.bc-trivia .bc-link:hover{color:var(--ink);border-color:var(--ink)}
+.bc-typing .bc-link{color:rgba(250,246,239,.55);border-color:rgba(250,246,239,.2)}
+.bc-typing .bc-link:hover{color:var(--lime);border-color:var(--lime)}
+.bc-dopamine .bc-link{color:rgba(255,255,255,.65);border-color:rgba(255,255,255,.25)}
+.bc-dopamine .bc-link:hover{color:white;border-color:white}
+.bc-watching .bc-link{color:rgba(255,77,46,.7);border-color:rgba(255,77,46,.3)}
+.bc-watching .bc-link:hover{color:var(--coral);border-color:var(--coral)}
+.bc-readme .bc-link{color:rgba(5,150,105,.8);border-color:rgba(5,150,105,.3)}
+.bc-readme .bc-link:hover{color:var(--emerald);border-color:var(--emerald)}
 
 /* featured bits */
 .feat-badge{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lime);margin-bottom:.5rem}
@@ -570,6 +600,15 @@ nav{
 /* status card */
 .status-big{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:900;line-height:1;margin:auto 0}
 .status-sub{font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;opacity:.7}
+
+/* fun projects badge */
+.fun-badge{
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-family:var(--mono);font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:.2rem .65rem;border-radius:100px;
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
+  margin-bottom:.25rem;width:fit-content;
+}
 
 /* ── CONTACT ── */
 #contact{
@@ -628,7 +667,6 @@ nav{
 .c-row-val{font-size:clamp(.78rem,.9vw,.9rem);font-weight:600;word-break:break-word}
 .c-row-arr{transition:all .2s;color:rgba(255,255,255,.2);font-size:1.1rem;flex-shrink:0}
 
-/* footer */
 .footer-strip{
   background:var(--ink);border-top:1px solid rgba(255,255,255,.07);
   padding:1.75rem var(--pad-x);display:flex;align-items:center;justify-content:space-between;
@@ -644,11 +682,9 @@ nav{
 .reveal.in{opacity:1;transform:translateY(0)}
 .rd1{transition-delay:.1s}.rd2{transition-delay:.2s}.rd3{transition-delay:.3s}
 
-/* ── ANIMATIONS ── */
 @keyframes fadein{from{opacity:0}to{opacity:1}}
 @keyframes wordslide{to{opacity:1;transform:translateY(0)}}
 
-/* ── SAFE AREA (notch/dynamic island) ── */
 @supports(padding:max(0px)){
   nav{padding-top:max(1.25rem, env(safe-area-inset-top))}
   .footer-strip{padding-bottom:max(1.75rem, env(safe-area-inset-bottom))}
@@ -738,7 +774,7 @@ nav{
     <div class="hero-actions">
       <div class="hero-stats">
         <div class="stat-chip">
-          <span class="sc-num" data-target="7" style="color:var(--coral)">0</span>
+          <span class="sc-num" data-target="13" style="color:var(--coral)">0</span>
           <span class="sc-label">Projects</span>
         </div>
         <div class="stat-chip">
@@ -746,7 +782,7 @@ nav{
           <span class="sc-label">Tests</span>
         </div>
         <div class="stat-chip">
-          <span class="sc-num" data-target="3" style="color:var(--violet)">0</span>
+          <span class="sc-num" data-target="5" style="color:var(--violet)">0</span>
           <span class="sc-label">Live apps</span>
         </div>
         <div class="stat-chip">
@@ -783,7 +819,6 @@ nav{
         <p>My work spans an <strong>AI-powered health tracking platform</strong> with 177+ automated tests, a <strong>community blogging platform</strong> deployed on Railway, an <strong>AI worksheet generator</strong> using OpenRouter API, and an <strong>AI text summariser</strong> built on HuggingFace's BART model. I've also freelanced client websites and interned at Innovura Technologies.</p>
         <p>I'm drawn to projects where the backend logic is the real challenge — rate limiting, async task queues, FHIR healthcare standards, custom storage backends. <strong>I like going deep.</strong></p>
 
-        <!-- RESUME DOWNLOAD CARD -->
         <div class="resume-card">
           <div class="resume-card-left">
             <div class="resume-card-ico">
@@ -830,9 +865,9 @@ nav{
       </div>
       <div class="skills-panel reveal rd2">
         <div><div class="sp-title">Languages</div><div class="sp-pills"><span class="sp-pill">Python</span><span class="sp-pill">SQL</span><span class="sp-pill">JavaScript</span><span class="sp-pill">HTML/CSS</span></div></div>
-        <div><div class="sp-title">Frameworks & Libraries</div><div class="sp-pills"><span class="sp-pill">Flask</span><span class="sp-pill">Django</span><span class="sp-pill">DRF</span><span class="sp-pill">React</span><span class="sp-pill">SQLAlchemy</span><span class="sp-pill">Celery</span><span class="sp-pill">HTMX</span></div></div>
+        <div><div class="sp-title">Frameworks & Libraries</div><div class="sp-pills"><span class="sp-pill">Flask</span><span class="sp-pill">Django</span><span class="sp-pill">DRF</span><span class="sp-pill">React</span><span class="sp-pill">SQLAlchemy</span><span class="sp-pill">Celery</span><span class="sp-pill">HTMX</span><span class="sp-pill">Streamlit</span></div></div>
         <div><div class="sp-title">Cloud & Databases</div><div class="sp-pills"><span class="sp-pill">Microsoft Azure</span><span class="sp-pill">Railway</span><span class="sp-pill">Render</span><span class="sp-pill">PostgreSQL</span><span class="sp-pill">Azure SQL</span><span class="sp-pill">Redis</span><span class="sp-pill">Supabase</span><span class="sp-pill">SQLite</span></div></div>
-        <div><div class="sp-title">APIs & Tools</div><div class="sp-pills"><span class="sp-pill">Google Gemini API</span><span class="sp-pill">OpenRouter API</span><span class="sp-pill">HuggingFace</span><span class="sp-pill">Google Sheets API</span><span class="sp-pill">Chart.js</span><span class="sp-pill">GitHub Actions</span><span class="sp-pill">Postman</span></div></div>
+        <div><div class="sp-title">APIs & Tools</div><div class="sp-pills"><span class="sp-pill">Google Gemini API</span><span class="sp-pill">OpenRouter API</span><span class="sp-pill">HuggingFace</span><span class="sp-pill">Google Sheets API</span><span class="sp-pill">Chart.js</span><span class="sp-pill">GitHub Actions</span><span class="sp-pill">Postman</span><span class="sp-pill">Canvas API</span><span class="sp-pill">Web Audio API</span></div></div>
       </div>
     </div>
   </div>
@@ -847,7 +882,6 @@ nav{
     </h2>
     <div class="exp-list">
 
-      <!-- CURRENT JOB — NEW -->
       <div class="exp-card current reveal">
         <div>
           <div class="exp-date">Feb 2026 — Present</div>
@@ -905,9 +939,13 @@ nav{
 <section id="projects">
   <div class="proj-inner">
     <div class="s-eyebrow reveal"><span></span>Selected projects</div>
-    <h2 class="reveal" style="font-family:var(--serif);font-size:clamp(2.2rem,5vw,4.5rem);line-height:1;letter-spacing:-.04em;font-weight:900;margin-bottom:2rem">
+    <h2 class="reveal" style="font-family:var(--serif);font-size:clamp(2.2rem,5vw,4.5rem);line-height:1;letter-spacing:-.04em;font-weight:900;margin-bottom:.5rem">
       Things I've <em style="font-style:italic;color:var(--coral)">built</em>
     </h2>
+
+    <!-- ── REAL-WORLD PROJECTS ── -->
+    <div class="proj-section-label reveal">Production · Full-stack · AI</div>
+
     <div class="bento reveal">
 
       <!-- FEATURED -->
@@ -957,9 +995,24 @@ nav{
         <div class="bc-tags"><span class="bc-tag">pytest</span><span class="bc-tag">GitHub Actions</span></div>
       </div>
 
+      <!-- MEDITRACK FRONTEND -->
+      <div class="bc-mtfrontend">
+        <div class="bc-num" style="opacity:.5">02</div>
+        <div class="bc-title">MediTrack Frontend</div>
+        <div class="bc-sub" style="opacity:.8">React 18 · Vite · Tailwind · Chart.js</div>
+        <div class="bc-desc" style="opacity:.8">Production React SPA for the MediTrack platform. Google OAuth, dark mode with system preference detection, onboarding wizard, PDF exports, and AI-powered health insights. 94/100 Lighthouse score, &lt;1.8s TTI.</div>
+        <div class="bc-tags">
+          <span class="bc-tag">React 18</span><span class="bc-tag">Vite</span><span class="bc-tag">Tailwind</span><span class="bc-tag">Chart.js</span><span class="bc-tag">Google OAuth</span><span class="bc-tag">Vercel</span>
+        </div>
+        <div class="bc-links">
+          <a href="https://meditrack7.vercel.app/" target="_blank" class="bc-link">Live app ↗</a>
+          <a href="https://github.com/sneh1117/meditrack-frontend" target="_blank" class="bc-link">GitHub ↗</a>
+        </div>
+      </div>
+
       <!-- STITCH TALES -->
       <div class="bc-stitch">
-        <div class="bc-num">02</div>
+        <div class="bc-num">03</div>
         <div class="bc-title">StitchTales</div>
         <div class="bc-sub">Blogging platform — Django</div>
         <div class="bc-desc">Community blogging for crochet lovers. Custom Supabase storage backend, CSS blur paywall, HTMX likes & bookmarks, and from-scratch visitor analytics.</div>
@@ -967,28 +1020,29 @@ nav{
           <span class="bc-tag" style="background:rgba(0,0,0,.07)">Django 5.2</span><span class="bc-tag" style="background:rgba(0,0,0,.07)">HTMX</span><span class="bc-tag" style="background:rgba(0,0,0,.07)">Supabase</span><span class="bc-tag" style="background:rgba(0,0,0,.07)">Railway</span>
         </div>
         <div class="bc-links">
-          <a href="https://stitchtales.up.railway.app" target="_blank" class="bc-link">Live ↗</a>
+          <a href="https://stitchtales.onrender.com/" target="_blank" class="bc-link">Live ↗</a>
           <a href="https://github.com/sneh1117/stitchtales" target="_blank" class="bc-link">GitHub ↗</a>
         </div>
       </div>
 
       <!-- DISTILL -->
       <div class="bc-distill">
-        <div class="bc-num" style="opacity:.5">03</div>
+        <div class="bc-num" style="opacity:.5">04</div>
         <div class="bc-title">Distill</div>
         <div class="bc-sub" style="opacity:.7">AI Text Summariser · Flask + HuggingFace</div>
-        <div class="bc-desc" style="opacity:.7">Summarises long-form text using BART. Multi-pass chunking for long docs, word count validation, SQLite history.</div>
+        <div class="bc-desc" style="opacity:.7">Summarises long-form text using BART. Multi-pass chunking for long docs, word count validation (100–2000 words), SQLite history, deployed on Render.</div>
         <div class="bc-tags">
-          <span class="bc-tag">Flask</span><span class="bc-tag">HuggingFace BART</span><span class="bc-tag">SQLite</span>
+          <span class="bc-tag">Flask</span><span class="bc-tag">HuggingFace BART</span><span class="bc-tag">SQLite</span><span class="bc-tag">Render</span>
         </div>
         <div class="bc-links">
+          <a href="https://ai-textsummarizer-sshe.onrender.com/" target="_blank" class="bc-link">Live app ↗</a>
           <a href="https://github.com/sneh1117/AI-TextSummarizer" target="_blank" class="bc-link">GitHub ↗</a>
         </div>
       </div>
 
       <!-- FUEL -->
       <div class="bc-fuel">
-        <div class="bc-num" style="opacity:.5">04</div>
+        <div class="bc-num" style="opacity:.5">05</div>
         <div class="bc-title">Fuel Management System</div>
         <div class="bc-sub" style="opacity:.7">Real-time IoT monitoring · Innovura Tech</div>
         <div class="bc-desc" style="opacity:.75">Live fuel sensor monitoring with Flask and Chart.js. Optimised backend queries, Azure-deployed, built as part of internship.</div>
@@ -1000,23 +1054,24 @@ nav{
         </div>
       </div>
 
-      <!-- AI WORKSHEET GENERATOR — NEW -->
-      <div class="bc-aiws">
-        <div class="bc-num" style="opacity:.6">05</div>
-        <div class="bc-title">AI Worksheet Generator</div>
-        <div class="bc-sub" style="opacity:.8">React + Flask + OpenRouter API</div>
-        <div class="bc-desc" style="opacity:.8">AI tool that generates worksheets and flashcards from user input with real-time content generation. Robust response parsing and error handling via OpenRouter API.</div>
+      <!-- README GEN -->
+      <div class="bc-readme">
+        <div class="bc-num" style="opacity:.5">06</div>
+        <div class="bc-title" style="color:var(--ink)">ReadmeGen</div>
+        <div class="bc-sub" style="color:var(--ink);opacity:.6">Auto README generator</div>
+        <div class="bc-desc" style="color:var(--ink)">Takes a project title and description and auto-generates a clean, structured README — cutting the friction of documentation for every new project.</div>
         <div class="bc-tags">
-          <span class="bc-tag">React</span><span class="bc-tag">Flask</span><span class="bc-tag">OpenRouter API</span>
+          <span class="bc-tag" style="background:rgba(5,150,105,.12);border-color:rgba(5,150,105,.25)">Python</span><span class="bc-tag" style="background:rgba(5,150,105,.12);border-color:rgba(5,150,105,.25)">AI</span>
         </div>
         <div class="bc-links">
+          <a href="https://sneh1117.github.io/Readme_Gen/" target="_blank" class="bc-link">Live ↗</a>
           <a href="https://github.com/sneh1117" target="_blank" class="bc-link">GitHub ↗</a>
         </div>
       </div>
 
       <!-- ARTISTRY -->
       <div class="bc-art">
-        <div class="bc-num">06</div>
+        <div class="bc-num">07</div>
         <div class="bc-title">Artistry by Dhanvi</div>
         <div class="bc-sub">Portfolio website · Makeup artist</div>
         <div class="bc-desc">Responsive portfolio showcasing services, pricing, and gallery. Clean UI/UX with interactive sections and cross-browser compatibility.</div>
@@ -1030,7 +1085,7 @@ nav{
 
       <!-- QUALIVA -->
       <div class="bc-qualiva">
-        <div class="bc-num" style="opacity:.4">07</div>
+        <div class="bc-num" style="opacity:.4">08</div>
         <div class="bc-title">Qualiva</div>
         <div class="bc-sub" style="opacity:.6">Business website · Static</div>
         <div class="bc-desc" style="opacity:.55">Static business site with reusable UI components, consistent styling, product info and contact — delivered on schedule for a real client.</div>
@@ -1039,6 +1094,77 @@ nav{
         </div>
         <div class="bc-links">
           <a href="https://qualivademo.github.io/" target="_blank" class="bc-link">Live site ↗</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── FOR HUMANS ── -->
+    <div class="proj-section-label reveal" style="margin-top:4rem">For humans · No purpose whatsoever · Just vibes</div>
+
+    <div class="bento reveal" style="margin-top:0">
+
+      <!-- TRIVIA GAME -->
+      <div class="bc-trivia">
+        <div class="fun-badge" style="background:rgba(0,0,0,.12);border-color:rgba(0,0,0,.15);color:var(--ink)">🎯 Live on Streamlit</div>
+        <div class="bc-num" style="opacity:.5;color:var(--ink)">09</div>
+        <div class="bc-title" style="color:var(--ink)">Trivia Game</div>
+        <div class="bc-sub" style="color:var(--ink)">Python · Streamlit · Open Trivia DB</div>
+        <div class="bc-desc" style="color:var(--ink)">Fast-paced trivia with 4 categories, 3 difficulty levels, live Open Trivia DB questions, streak tracking, and a persistent leaderboard. Dark UI with animated progress bar.</div>
+        <div class="bc-tags">
+          <span class="bc-tag" style="background:rgba(0,0,0,.1);border-color:rgba(0,0,0,.15)">Python</span><span class="bc-tag" style="background:rgba(0,0,0,.1);border-color:rgba(0,0,0,.15)">Streamlit</span><span class="bc-tag" style="background:rgba(0,0,0,.1);border-color:rgba(0,0,0,.15)">Open Trivia DB</span>
+        </div>
+        <div class="bc-links">
+          <a href="https://trivia-game-sneha.streamlit.app/" target="_blank" class="bc-link">Play live ↗</a>
+          <a href="https://github.com/sneh1117/trivia-game" target="_blank" class="bc-link">GitHub ↗</a>
+        </div>
+      </div>
+
+      <!-- TYPING TEST -->
+      <div class="bc-typing">
+        <div class="fun-badge">⌨️ Live on GitHub Pages</div>
+        <div class="bc-num" style="opacity:.5">10</div>
+        <div class="bc-title">Typing Test</div>
+        <div class="bc-sub" style="opacity:.8">Vanilla JS · Supabase · GitHub Pages</div>
+        <div class="bc-desc">Feature-rich typing speed test with live WPM + accuracy, 3 word modes (sentences, top words, code), sudden death mode, WPM-over-time chart, personal bests, and a global leaderboard via Supabase + GitHub OAuth. Zero dependencies.</div>
+        <div class="bc-tags">
+          <span class="bc-tag">Vanilla JS</span><span class="bc-tag">Supabase</span><span class="bc-tag">Canvas API</span><span class="bc-tag">GitHub OAuth</span>
+        </div>
+        <div class="bc-links">
+          <a href="https://sneh1117.github.io/Typing_test/" target="_blank" class="bc-link">Play live ↗</a>
+          <a href="https://github.com/sneh1117/Typing_test" target="_blank" class="bc-link">GitHub ↗</a>
+        </div>
+      </div>
+
+      <!-- DOPAMINE HIT -->
+      <div class="bc-dopamine">
+        <div class="fun-badge">🫧 Oddly satisfying</div>
+        <div class="bc-num" style="opacity:.6">11</div>
+        <div class="bc-title">DopamineHit</div>
+        <div class="bc-sub" style="opacity:.8">6 mini-experiences · Pure frontend</div>
+        <div class="bc-desc" style="opacity:.85">A collection of interactive, oddly satisfying mini-experiences: bubble wrap, endless knitting, infinite doors, sticker peeling, kinetic sand, and brush &amp; clean. Web Audio API soundscapes. Zero frameworks, zero dependencies.</div>
+        <div class="bc-tags">
+          <span class="bc-tag">HTML5</span><span class="bc-tag">Canvas API</span><span class="bc-tag">Web Audio API</span><span class="bc-tag">Vanilla JS</span>
+        </div>
+        <div class="bc-links">
+          <a href="https://sneh1117.github.io/DopamineHit/" target="_blank" class="bc-link">Try it ↗</a>
+          <a href="https://github.com/sneh1117/DopamineHit" target="_blank" class="bc-link">GitHub ↗</a>
+        </div>
+      </div>
+
+      <!-- SOMEONE IS WATCHING -->
+      <div class="bc-watching">
+        <div class="fun-badge" style="background:rgba(255,77,46,.1);border-color:rgba(255,77,46,.3);color:var(--coral)">👻 DEV April Fools Challenge</div>
+        <div class="bc-num" style="opacity:.4">12</div>
+        <div class="bc-title">Someone Is Watching</div>
+        <div class="bc-sub" style="opacity:.7">Psychological horror · Webcam · 30 seconds</div>
+        <div class="bc-desc" style="opacity:.65">Turns your own webcam into the source of fear. A 30-second phase-based horror experience — delayed ghost frames, a procedural creepy face, and glitch effects. Frame buffer system stores recent webcam frames and replays them as "ghosts". Zero data stored. Built in ~900 lines of vanilla code.</div>
+        <div class="bc-tags">
+          <span class="bc-tag">Vanilla JS</span><span class="bc-tag">Canvas API</span><span class="bc-tag">getUserMedia</span><span class="bc-tag">Web Audio API</span>
+        </div>
+        <div class="bc-links">
+          <a href="https://sneh1117.github.io/someone-is-watching/" target="_blank" class="bc-link" style="color:var(--coral);border-color:rgba(255,77,46,.4)">Enter if you dare ↗</a>
+          <a href="https://github.com/sneh1117/someone-is-watching" target="_blank" class="bc-link">GitHub ↗</a>
         </div>
       </div>
 
@@ -1146,7 +1272,7 @@ if(window.innerWidth > 768){
     blob.style.left=bx+'px'; blob.style.top=by+'px';
     requestAnimationFrame(animBlob);
   })();
-  document.querySelectorAll('a,button,.stat-chip,.bc-feat,.bc-metrics,.bc-status,.bc-stitch,.bc-distill,.bc-fuel,.bc-art,.bc-qualiva,.bc-aiws,.sp-pill,.exp-card,.resume-card').forEach(el=>{
+  document.querySelectorAll('a,button,.stat-chip,.bc-feat,.bc-metrics,.bc-status,.bc-stitch,.bc-distill,.bc-fuel,.bc-art,.bc-qualiva,.bc-mtfrontend,.bc-trivia,.bc-typing,.bc-dopamine,.bc-watching,.bc-readme,.sp-pill,.exp-card,.resume-card').forEach(el=>{
     el.addEventListener('mouseenter',()=>blob.classList.add('link'));
     el.addEventListener('mouseleave',()=>blob.classList.remove('link'));
   });
